@@ -1,0 +1,35 @@
+img{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: stretch
+}
+
+#homeBtn{
+    margin:20px 0;
+}
+
+#homeWords{
+    margin:15px 0;
+}
+
+#newForm{
+    width: 30%;
+    margin:0 auto;
+}
+
+.footer{
+    text-align: center;
+    margin:50px;
+}
+
+#linkBack{
+    font-size:100%;
+    width: 100%;
+    height: 100%;
+    margin:20px auto;
+}
+
+.nav-item{
+    text-align: right;
+}

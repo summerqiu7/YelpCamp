@@ -1,0 +1,20 @@
+<% include ../partials/header %>
+
+
+<h1><%= campground.name%></h1>
+
+ <img src = "<%= campground.image %>" class = "img-fluid">
+
+ <p><%= campground.description %></p>
+
+ <% campground.comments.forEach(function(comment){ %>
+     <p>
+     <%= comment.author %> - <%= comment.content %>
+     </p>
+ <% }) %>
+
+ <a id="linkBack" class="badge badge-light badge-block" href="/campgrounds/<%= campground._id %>/comments/new"> Add Comments</a>
+        </form>
+
+
+ <% include ../partials/footer %>
