@@ -3,7 +3,7 @@
 
 <div class="container">
         <h1>Add new comments to <%= campground.name %></h1>
-        <form action="/campgrounds/<%= campground._id %>/comments/new" method="GET">
+        <form action="/campgrounds/<%= campground._id %>/comments" method="POST">
             <div class="form-group row form-control-lg">
                 <input class="form-control" type="text" name="content" placeholder="comments content">
             </div>

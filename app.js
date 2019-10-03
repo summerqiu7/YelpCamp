@@ -79,14 +79,37 @@ app.get("/campgrounds/:id", function(req,res){
 
 // comment routes
 app.get("/campgrounds/:id/comments/new", function(req,res){
-    Campground.findById(req.params.id,function(err,campground){
+    Campground.findById(req.params.id, function(err,campground){
         if(err){
             console.log(err);
         }else{
-            res.render("comments/new",{campground:campground});
+            res.render("comments/new", {campground:campground});
         }
     })
 });
+
+app.post("/campgrounds/:id/comments", function(req,res){
+    const author = req.body.author;
+    const content = req.body.content;
+    const newComment= {author:author, content:content};
+    Campground.findById(req.params.id, function(err,campground){
+        if(err){
+            console.log(err);
+            res.redirect("/campgrounds");
+        } else {
+            Comment.create(newComment, function(err,newComment){
+                if(err){
+                    console.log(err);
+                } else {
+                    console.log(newComment);
+                    campground.comments.push(newComment);
+                    campground.save();
+                    res.redirect('/campgrounds/' + campground._id);
+                }
+            });
+        }
+    });
+})
 
 app.listen(3000, function(){
     console.log("Server is On!");
