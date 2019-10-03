@@ -33,3 +33,7 @@ img{
 .nav-item{
     text-align: right;
 }
+
+.thumnail.caption-full{
+  padding:10px;  
+}

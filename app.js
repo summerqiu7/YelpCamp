@@ -8,7 +8,9 @@ const seedDB = require("./seeds");
 
 seedDB();
 
-mongoose.connect('mongodb+srv://devsummer:summermg@cluster0-oa1hv.mongodb.net/yelp_camp?retryWrites=true&w=majority',{useNewUrlParser:true});
+mongoose.connect('mongodb+srv://summerqiu:summermg@cluster0-5nrxj.mongodb.net/yelp_camp?retryWrites=true&w=majority',{useNewUrlParser:true});
+// 'mongodb+srv://devsummer:summermg@cluster0-oa1hv.mongodb.net/yelp_camp?retryWrites=true&w=majority'
+
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 
@@ -101,7 +103,6 @@ app.post("/campgrounds/:id/comments", function(req,res){
                 if(err){
                     console.log(err);
                 } else {
-                    console.log(newComment);
                     campground.comments.push(newComment);
                     campground.save();
                     res.redirect('/campgrounds/' + campground._id);
