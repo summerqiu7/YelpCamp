@@ -4,7 +4,7 @@ const Campground = require("../models/campground");
 
 
 // Index - display the list of the campgrounds
-router.get("/campgrounds", isLoggedIn, function (req,res){ 
+router.get("/campgrounds", function (req,res){ 
     Campground.find({},function(err,allCampgrounds){
         if(err){
             console.log(err);
@@ -19,12 +19,17 @@ router.post("/campgrounds", isLoggedIn, function(req,res){
     const name = req.body.name;
     const image = req.body.image;
     const description = req.body.description;
-    const newCampground = {name:name, image: image, description:description};
+    const author = {
+        id: req.user._id,
+        username: req.user.username
+    };
+    const newCampground = {name:name, image: image, description:description, author:author};
     // create a new campground and save to db
     Campground.create(newCampground, function(err,newlyCreated){
         if(err){
             console.log(err);
         }else{
+
             res.redirect("/campgrounds");
         }
     });
