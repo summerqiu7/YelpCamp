@@ -13,7 +13,10 @@ const commentRoutes      = require("./routes/comment"),
       campgroundRoutes   = require("./routes/campgrounds"),
       authRoutes         = require("./routes/index")
 
-seedDB();
+// seed the databse
+
+// seedDB(); 
+
 mongoose.connect('mongodb+srv://summerqiu:summermg@cluster0-5nrxj.mongodb.net/yelp_camp?retryWrites=true&w=majority',{useNewUrlParser:true});
 // 'mongodb+srv://devsummer:summermg@cluster0-oa1hv.mongodb.net/yelp_camp?retryWrites=true&w=majority'
 

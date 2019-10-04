@@ -20,14 +20,14 @@
                 </div>
             </div>
             <div>
-                <a class="btn btn-outline-success btn-block" href="/campgrounds/<%= campground._id %>/comments/new"> Leave your comments</a>
+                <a id ="commentBtn"class="btn btn-outline-success" href="/campgrounds/<%= campground._id %>/comments/new"> Leave your comments</a>
             </div>
             <hr>
             <div class="card-header">
                 <% campground.comments.forEach(function(comment){ %>
                     <div class="row">
                         <div class="col-md-12">
-                            <strong><%= comment.author %></strong>
+                            <strong><%= comment.author.username %></strong>
                             <span class="float-right">10 days ago</span>
                             <p>
                             <%= comment.content %>
