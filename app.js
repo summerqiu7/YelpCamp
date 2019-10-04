@@ -139,7 +139,7 @@ app.post("/register", function(req,res){
     User.register(newUser, password, function(err,user){
         if(err){
             console.log(err);
-            return res.render("register");
+            res.render("register");
         } else {
             // facebook/twitter can be replaced with "local"
                 passport.authenticate("local")(req, res, function(){
