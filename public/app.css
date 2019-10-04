@@ -38,8 +38,15 @@ img{
   padding:10px;  
 }
 
+#delete-form{
+    display: inline;
+}
 
-#infoBtn{
-    margin:10px 0;  
+#commentBtn{
+    margin:10px auto;
+}
+
+#backBtn{
+    margin:10px auto;
 }
 

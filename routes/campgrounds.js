@@ -3,6 +3,7 @@ const router = express.Router();
 const Campground = require("../models/campground");
 
 
+
 // Index - display the list of the campgrounds
 router.get("/campgrounds", function (req,res){ 
     Campground.find({},function(err,allCampgrounds){
@@ -54,6 +55,76 @@ router.get("/campgrounds/:id", isLoggedIn, function(req,res){
 });
 
 
+// Edit form page
+
+router.get("/campgrounds/:id/edit", isAuthorication, function(req,res){
+    Campground.findById(req.params.id, function(err,foundCampground){
+        if (err){
+            console.log(err);
+            res.redirect("/campgrounds");
+        } else {
+            res.render("campgrounds/edit", {campground:foundCampground});
+        }
+    });
+   
+});
+
+// Update route
+
+router.post("/campgrounds/:id", isAuthorication, function(req,res){
+    const name = req.body.editedName;
+    const image = req.body.editedImage;
+    const description = req.body.editedDescription;
+    const updatedData = {
+        name:name,
+        image: image,
+        description: description
+    };
+    Campground.findByIdAndUpdate(req.params.id, updatedData,function(err,editedCampground){
+        if (err){
+            console.log(err);
+            res.redirect("/campgrounds");
+        } else {
+            res.redirect('/campgrounds/' + editedCampground._id);
+        }
+    });
+});
+
+// Delete route
+ router.post("/campgrounds/:id/delete",isAuthorication, function(req,res){
+        Campground.findByIdAndRemove(req.params.id,function(err){
+            if (err){
+                res.redirect("/campgrounds");
+            } else {
+                res.redirect("/campgrounds");
+            }
+        });
+ });
+
+// =======================================================
+// Middleware
+// =======================================================
+ // Authorication
+
+function isAuthorication(req,res,next){
+    if (req.isAuthenticated()){
+        Campground.findById(req.params.id, function(err,foundCampground){
+            if (err) {
+                res.redirect ("back");
+            } else {
+                if (foundCampground.author.id.equals(req.user._id)){
+                    next();
+                } else {
+                    res.redirect("back");
+                }
+            }
+        });
+    } else {
+        res.redirect("back");
+    }
+};
+
+// Check if user login
     function isLoggedIn(req,res,next){
         if (req.isAuthenticated()){
             return next();

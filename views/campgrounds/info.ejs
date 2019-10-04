@@ -17,12 +17,18 @@
                     <h4 class="float-right">$20/night</h4>
                     <h4><a><%= campground.name%></a></h4>
                     <p><%= campground.description %></p>
-                    <p class="small">Campground submited by <strong><%= campground.author.username %></strong></p>
+                    <p class="small"><em>Submited by</em> <strong><%= campground.author.username %></strong></p>
                 </div>
             </div>
-            <div>
-                <a id ="commentBtn"class="btn btn-outline-success" href="/campgrounds/<%= campground._id %>/comments/new"> Leave your comments</a>
-            </div>
+            
+                <a id = "eidtBtn" class="btn btn-outline-warning btn-sm" href="/campgrounds/<%= campground._id %>/edit"> Edit</a>
+            
+            <form id = "delete-form" action = "/campgrounds/<%= campground._id %>/delete" method = "POST">
+               <button id = "deleteBtn" class = "btn btn-outline-danger btn-sm">Delete</button>
+            </form>
+
+
+            
             <hr>
             <div class="card-header">
                 <% campground.comments.forEach(function(comment){ %>
@@ -37,7 +43,12 @@
                     </div>
                 <% }) %>
             </div>
-                <a id="infoBtn" class="btn btn-outline-primary btn-block" href="/campgrounds" role="button">Back to see all campgrounds</a>
+            <div>
+                <a id ="commentBtn"class="btn btn-success btn-block" href="/campgrounds/<%= campground._id %>/comments/new"> Leave your comments</a>
+            </div>
+            <div>
+                <a id="backBtn" class="btn btn-primary btn-block" href="/campgrounds" role="button">Back to see all campgrounds</a>
+            </div>
         </div>
     </div>
 </div>
