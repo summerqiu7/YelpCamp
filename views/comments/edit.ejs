@@ -1,0 +1,17 @@
+<% include ../partials/header %>
+
+
+<div class="container">
+        <h1>Edit comments</h1>
+        <form action="/campgrounds/<%= campground_id %>/comments/<%= comment._id %>/edit" method="POST">
+            <div class="form-group row form-control-lg">
+                <input class="form-control" type="text" name="content" value="<%= comment.content %>">
+            </div>
+            <div class="form-group row form-control-lg">
+                <button class="btn btn-primary btn-lg btn-block">Submit</button>
+            </div>
+            <a id="linkBack" class="badge badge-light badge-block" href="/campgrounds/<%= campground_id %>"> Go Back</a>
+        </form> 
+</div>
+
+<% include ../partials/footer %>
