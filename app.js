@@ -6,6 +6,7 @@ const Campground = require("./models/campground");
 const Comment = require("./models/comment");
 const User = require("./models/user");
 const passport = require("passport");
+const flash = require ("connect-flash");
 LocalStrategy = require("passport-local");
 passportLocalMongoose = require("passport-local-mongoose");
 
@@ -26,6 +27,7 @@ const app = express();
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
+app.use(flash());
 
 // passport configuration
 app.use(require("express-session")({
