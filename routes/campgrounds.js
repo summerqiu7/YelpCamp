@@ -42,7 +42,7 @@ router.get("/campgrounds/new", middleware.isLoggedIn, function(req,res){
 })
 
 // Show/Info - show more info
-router.get("/campgrounds/:id", middleware.isLoggedIn, function(req,res){
+router.get("/campgrounds/:id", function(req,res){
     // find the campground with the provided id
     Campground.findById(req.params.id).populate("comments").exec(function(err,foundCampground){
         if(err){
@@ -85,6 +85,7 @@ router.post("/campgrounds/:id", middleware.checkCampgroundOwnership, function(re
             console.log(err);
             res.redirect("/campgrounds");
         } else {
+            req.flash("success","Campground updated!");
             res.redirect('/campgrounds/' + editedCampground._id);
         }
     });
@@ -96,6 +97,7 @@ router.post("/campgrounds/:id", middleware.checkCampgroundOwnership, function(re
             if (err){
                 res.redirect("/campgrounds");
             } else {
+                req.flash("error","Campground deleted!");
                 res.redirect("/campgrounds");
             }
         });

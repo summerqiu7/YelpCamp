@@ -30,20 +30,20 @@ router.post("/register", function(req,res){
     const newUser = new User({username:username});
     User.register(newUser, password, function(err,user){
         if(err){
-            console.log(err);
-            res.render("register");
-        } else {
+            req.flash("error", err.message);
+            return res.render("register");
+        }
             // facebook/twitter can be replaced with "local"
                 passport.authenticate("local")(req, res, function(){
+                    req.flash("success","Welcome to YelpCam " + user.username + ", Please Log in!");
                     res.redirect("/login");
             });
-        }
     });
 });
 
 // Login route
 router.get("/login", function(req,res){
-    res.render("login",{message:req.flash("error")});
+    res.render("login");
 });
 
 // Login logic
@@ -58,14 +58,10 @@ router.post("/login", passport.authenticate("local",
 // Log out route
 router.get("/logout", function(req,res){
     req.logout();
+    req.flash("success", "Logged you out!");
     res.redirect("/");
 });
 
-function isLoggedIn(req,res,next){
-    if (req.isAuthenticated()){
-        return next();
-    } 
-    res.redirect("/login");
-};
+
 
 module.exports = router;
