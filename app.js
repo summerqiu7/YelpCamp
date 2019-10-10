@@ -23,8 +23,7 @@ const commentRoutes      = require("./routes/comment"),
 // seedDB(); 
 const DB_USERNAME = process.env.DB_USERNAME;
 const DB_PASSWORD = process.env.DB_PASSWORD;
-const dbUrl = 'mongodb+srv://' + DB_USERNAME + ':' +  DB_PASSWORD + '@cluster0-5nrxj.mongodb.net/yelp_camp?retryWrites=true&w=majority'
-console.log(dbUrl);
+const dbUrl = 'mongodb+srv://' + DB_USERNAME + ':' +  DB_PASSWORD + '@cluster0-5nrxj.mongodb.net/yelp_camp?retryWrites=true&w=majority';
 mongoose.connect(dbUrl,{
     useNewUrlParser:true,
     useCreateIndex: true
