@@ -18,10 +18,11 @@ const commentRoutes      = require("./routes/comment"),
 
 // seedDB(); 
 
-mongoose.connect('mongodb+srv://summerqiu:summermg@cluster0-5nrxj.mongodb.net/yelp_camp?retryWrites=true&w=majority',{
+mongoose.connect(databaseURL,{
     useNewUrlParser:true,
     useCreateIndex: true
 });
+
 
 
 // command line
