@@ -53,6 +53,5 @@ app.use(campgroundRoutes);
 app.use(commentRoutes);
 app.use(authRoutes);
 
-app.listen(3000, function(){
-    console.log("Server is On!");
-})
+const port_number = app.listen(process.env.PORT || 3000);
+app.listen(port_number);
