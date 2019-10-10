@@ -18,7 +18,11 @@ const commentRoutes      = require("./routes/comment"),
 
 // seedDB(); 
 
-mongoose.connect('mongodb+srv://summerqiu:summermg@cluster0-5nrxj.mongodb.net/yelp_camp?retryWrites=true&w=majority',{useNewUrlParser:true});
+mongoose.connect('mongodb+srv://summerqiu:summermg@cluster0-5nrxj.mongodb.net/yelp_camp?retryWrites=true&w=majority',{
+    useNewUrlParser:true,
+    useCreateIndex: true
+});
+
 // 'mongodb+srv://devsummer:summermg@cluster0-oa1hv.mongodb.net/yelp_camp?retryWrites=true&w=majority'
 
 //  mongo "mongodb+srv://cluster0-5nrxj.mongodb.net/admin"  --username summerqiu
