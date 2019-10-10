@@ -7,6 +7,10 @@ const Comment = require("./models/comment");
 const User = require("./models/user");
 const passport = require("passport");
 const flash = require ("connect-flash");
+const dotenv = require('dotenv');
+
+dotenv.config();
+
 LocalStrategy = require("passport-local");
 passportLocalMongoose = require("passport-local-mongoose");
 
@@ -17,13 +21,14 @@ const commentRoutes      = require("./routes/comment"),
 // seed the databse
 
 // seedDB(); 
-
-mongoose.connect(databaseURL,{
+const DB_USERNAME = process.env.DB_USERNAME;
+const DB_PASSWORD = process.env.DB_PASSWORD;
+const dbUrl = 'mongodb+srv://' + DB_USERNAME + ':' +  DB_PASSWORD + '@cluster0-5nrxj.mongodb.net/yelp_camp?retryWrites=true&w=majority'
+console.log(dbUrl);
+mongoose.connect(dbUrl,{
     useNewUrlParser:true,
     useCreateIndex: true
 });
-
-
 
 // command line
 //  mongo "mongodb+srv://cluster0-5nrxj.mongodb.net/admin"  --username summerqiu
