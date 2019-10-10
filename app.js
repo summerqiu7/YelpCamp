@@ -18,13 +18,11 @@ const commentRoutes      = require("./routes/comment"),
 
 // seedDB(); 
 
-mongoose.connect(process.env.databaseURL,{
+mongoose.connect('mongodb+srv://summerqiu:summermg@cluster0-5nrxj.mongodb.net/yelp_camp?retryWrites=true&w=majority',{
     useNewUrlParser:true,
     useCreateIndex: true
 });
 
-
-// mongodb+srv://summerqiu:summermg@cluster0-5nrxj.mongodb.net/yelp_camp?retryWrites=true&w=majority
 
 // command line
 //  mongo "mongodb+srv://cluster0-5nrxj.mongodb.net/admin"  --username summerqiu
@@ -59,5 +57,5 @@ app.use(campgroundRoutes);
 app.use(commentRoutes);
 app.use(authRoutes);
 
-const port_number = app.listen(process.env.PORT, process.env.IP || 3000);
+const port_number = app.listen(process.env.PORT || 3000);
 app.listen(port_number);
